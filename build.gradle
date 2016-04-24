@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+
+mainClassName = 'io.kwshoe.wumpagent.Main'
+
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
+
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+jar {
+    baseName = 'wump-agent'
+    version = '0.0.1'
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
