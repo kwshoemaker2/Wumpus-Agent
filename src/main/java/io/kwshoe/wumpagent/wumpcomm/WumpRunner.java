@@ -13,7 +13,7 @@ public class WumpRunner extends Thread
 {
     private final BufferedReader reader;
     private final BufferedWriter writer;
-    private String wump_out = "";
+    private String wumpOut = "";
 
     public WumpRunner(BufferedReader read, BufferedWriter write)
     {
@@ -27,26 +27,28 @@ public class WumpRunner extends Thread
         int c;
         try {
             while((c = reader.read()) != -1) {
-                wump_out += (char)c;
+                wumpOut += (char)c;
             }
         } catch(IOException e) {
             e.printStackTrace();
         }
     }
 
-    public synchronized void send_cmd(String cmd) throws IOException
+    public synchronized void sendCmd(String cmd) throws IOException
     {
-        if(cmd.charAt(cmd.length()-1) != '\n') {
-            cmd += '\n';
+        if(cmd.length() > 0) {
+            if(cmd.charAt(cmd.length()-1) != '\n') {
+                cmd += '\n';
+            }
+            writer.write(cmd);
+            writer.flush();
         }
-        writer.write(cmd);
-        writer.flush();
     }
 
-    public synchronized String get_output()
+    public synchronized String getOutput()
     {
-        String copy = new String(wump_out);
-        wump_out = "";
+        String copy = new String(wumpOut);
+        wumpOut = "";
         return copy;
     }
 }
