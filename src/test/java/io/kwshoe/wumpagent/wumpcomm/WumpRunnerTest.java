@@ -56,14 +56,22 @@ public class WumpRunnerTest extends TestCase
     }
 
     @Test
-    public void testGetOutpout_readerSendsSequence_sequenceCorrectlyObtained() throws Exception
+    public void testGetOutput_readerSendsSequence_sequenceCorrectlyObtained() throws Exception
     {
-        fail();
+        when(mockReader.read()).thenReturn((int)'H', (int)'e', (int)'l', (int)'l', (int)'o', -1);
+        wr.run();
+        String expected = "Hello";
+        String actual = wr.getOutput();
+        assertEquals(expected, actual);
     }
 
     @Test
     public void testGetOutput_outputObtained_wumpOutputReset() throws Exception
     {
-        fail();
+        when(mockReader.read()).thenReturn((int)'H', (int)'e', (int)'l', (int)'l', (int)'o', -1);
+        wr.run();
+        wr.getOutput();
+        String secondOutput = wr.getOutput();
+        assertEquals("", secondOutput);
     }
 }
