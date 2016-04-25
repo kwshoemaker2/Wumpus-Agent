@@ -1,17 +1,24 @@
 package io.kwshoe.wumpagent.wumpcomm;
 
 
-/**
-  * 
-  *  Room information:
-  *     InRoom(inRoom)
-  *     Stench(inRoom)
-  *     Rustle(inRoom)
-  *     Breeze(inRoom)
-  *     Adjacent(toRoom)
-  */
-
 public class WumpInfo
 {
+    private final WumpInfoType type;
+    private final int room;
+    public WumpInfo(WumpInfoType type, int room)
+    {
+        this.type = type;
+        this.room = room;
+    }
+
+    public WumpInfoType getType()
+    {
+        return type;
+    }
+
+    public int getRoom()
+    {
+        return room;
+    }
 }
 
